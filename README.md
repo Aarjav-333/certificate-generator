@@ -4,7 +4,7 @@ A reusable, browser-based certificate generator. Fill in the institution, partic
 
 Everything runs in the browser. Uploaded logos, signatures and saved configurations stay on your device and are never sent to a server.
 
-**Live app:** _deployed on Vercel. The URL is added below once the first deployment finishes._
+**Live app:** https://certificate-generator-six-tau.vercel.app
 
 ## Features
 
@@ -71,7 +71,7 @@ The output in `dist/` is a fully static site.
 
 ## Deployment
 
-The app is deployed on **[Vercel](https://vercel.com)** from this GitHub repository. Every push to `main` triggers a production deployment. Vercel detects the Vite framework automatically:
+The app is deployed on **[Vercel](https://vercel.com)** at https://certificate-generator-six-tau.vercel.app. With the Vercel GitHub integration connected to this repository, every push to `main` triggers a production deployment. A manual production deploy is `vercel deploy --prod`. The project uses these settings:
 
 | Setting          | Value           |
 | ---------------- | --------------- |
