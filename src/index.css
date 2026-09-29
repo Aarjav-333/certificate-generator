@@ -1,0 +1,43 @@
+@import 'tailwindcss';
+
+:root {
+  color-scheme: light;
+  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  background: #f3f2ef;
+  color: #1c1917;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.95em;
+  background: rgb(0 0 0 / 0.05);
+  padding: 0 0.25em;
+  border-radius: 3px;
+}
+
+/* Printing: only the certificate, at physical size, edge to edge. */
+.print-sheet {
+  display: none;
+}
+
+@media print {
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-sheet {
+    display: block;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
