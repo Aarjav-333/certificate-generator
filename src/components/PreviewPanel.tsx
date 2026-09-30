@@ -10,13 +10,16 @@ interface Props {
   layout: CertificateLayout | null
   loading: boolean
   renderError: string | null
+  /** An automatic retry of the failed render is already scheduled. */
+  retrying: boolean
+  onRetry: () => void
   title: string
   errors: FieldError[]
   onExport: (kind: ExportKind) => Promise<void>
   onFocusField: (field: string) => void
 }
 
-export function PreviewPanel({ layout, loading, renderError, title, errors, onExport, onFocusField }: Props) {
+export function PreviewPanel({ layout, loading, renderError, retrying, onRetry, title, errors, onExport, onFocusField }: Props) {
   const [busy, setBusy] = useState<ExportKind | null>(null)
 
   async function run(kind: ExportKind) {
@@ -73,18 +76,14 @@ export function PreviewPanel({ layout, loading, renderError, title, errors, onEx
           {layout ? (
             <CertificateSvg layout={layout} title={title} className="block h-auto w-full" />
           ) : (
-            <div className="flex aspect-[297/210] items-center justify-center text-sm text-stone-500">
-              {renderError ?? (loading ? 'Loading fonts…' : '')}
+            <div className="flex aspect-[297/210] items-center justify-center p-6 text-center text-sm text-stone-500">
+              {renderError ? <RenderError message={renderError} retrying={retrying} onRetry={onRetry} /> : loading ? 'Loading fonts…' : ''}
             </div>
           )}
         </div>
       </div>
 
-      {renderError && layout && (
-        <p role="alert" className="text-sm text-red-700">
-          {renderError}
-        </p>
-      )}
+      {renderError && layout && <RenderError message={renderError} retrying={retrying} onRetry={onRetry} />}
       {layout && layout.warnings.length > 0 && (
         <ul className="space-y-1 text-xs text-amber-800" aria-live="polite">
           {layout.warnings.map((w) => (
@@ -95,6 +94,21 @@ export function PreviewPanel({ layout, loading, renderError, title, errors, onEx
         </ul>
       )}
     </section>
+  )
+}
+
+function RenderError({ message, retrying, onRetry }: { message: string; retrying: boolean; onRetry: () => void }) {
+  return (
+    <div role="alert" className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 text-sm text-red-700">
+      <span>{message}</span>
+      {retrying ? (
+        <span className="text-stone-500">Retrying automatically…</span>
+      ) : (
+        <Button size="sm" onClick={onRetry}>
+          Retry
+        </Button>
+      )}
+    </div>
   )
 }
 

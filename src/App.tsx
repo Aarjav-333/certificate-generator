@@ -62,7 +62,7 @@ export default function App() {
 
 function Generator({ initial }: { initial: CertificateConfig }) {
   const { config, actions } = useCertificate(initial)
-  const { layout, loading, error: renderError } = useCertificateLayout(config)
+  const { layout, loading, error: renderError, retrying, retry } = useCertificateLayout(config)
   const autosave = useAutosave(config, true)
   const [open, setOpen] = useState<Set<SectionId>>(() => new Set(['template', 'institution', 'participant', 'event']))
   const [showExportErrors, setShowExportErrors] = useState(false)
@@ -206,6 +206,8 @@ function Generator({ initial }: { initial: CertificateConfig }) {
             layout={layout}
             loading={loading}
             renderError={renderError}
+            retrying={retrying}
+            onRetry={retry}
             title={title}
             errors={showExportErrors ? errors : []}
             onExport={handleExport}
