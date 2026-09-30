@@ -71,7 +71,7 @@ The output in `dist/` is a fully static site.
 
 ## Deployment
 
-The app is deployed on **[Vercel](https://vercel.com)** at https://certificate-generator-six-tau.vercel.app. With the Vercel GitHub integration connected to this repository, every push to `main` triggers a production deployment. A manual production deploy is `vercel deploy --prod`. The project uses these settings:
+The app is deployed on **[Vercel](https://vercel.com)** at https://certificate-generator-six-tau.vercel.app. The Vercel project is connected to this GitHub repository: every push to `main` triggers a production deployment, and pushes to other branches get preview deployments. The project uses these settings:
 
 | Setting          | Value           |
 | ---------------- | --------------- |
