@@ -35,20 +35,22 @@ export async function sampleLogo(): Promise<ImageAsset> {
   return svgToAsset(SAMPLE_CREST, 'sample-crest.png', 900, 'Sample institution crest')
 }
 
+/** Script font the sample signatures are drawn with. */
+export const SIGNATURE_FONT = 'great-vibes-400-normal.ttf'
+
 /**
  * Sample handwritten signatures rendered from the bundled script font in a
  * blue-black ink, trimmed and on a transparent background — like a real
  * scanned signature PNG.
  */
 export async function sampleSignature(text: string, seed: number): Promise<ImageAsset> {
-  const key = 'great-vibes-400-normal.ttf'
-  await loadFont(key)
+  await loadFont(SIGNATURE_FONT)
   const size = 120
   const canvas = document.createElement('canvas')
   canvas.width = 900
   canvas.height = 260
   const ctx = canvas.getContext('2d')!
-  ctx.font = `${size}px "${cssFamilyFor(key)}"`
+  ctx.font = `${size}px "${cssFamilyFor(SIGNATURE_FONT)}"`
   ctx.fillStyle = '#1B2F7A'
   ctx.translate(40, 180)
   ctx.rotate(-0.05 - (seed % 3) * 0.02)

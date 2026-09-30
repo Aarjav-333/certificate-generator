@@ -1,7 +1,9 @@
 import { blankConfig } from '../lib/config'
+import { loadFont, loadFonts } from '../lib/fonts/loader'
+import { requiredFonts } from '../templates/engine'
 import type { CertificateConfig } from '../types/certificate'
 import { newId } from '../utils/dataUrl'
-import { sampleLogo, sampleSignature } from './sampleAssets'
+import { SIGNATURE_FONT, sampleLogo, sampleSignature } from './sampleAssets'
 
 const SAMPLE_SIGNATORIES = [
   { name: 'Prof. A. Sample', designation: 'Coordinator', sign: 'A. Sample' },
@@ -13,6 +15,11 @@ const SAMPLE_SIGNATORIES = [
 /** Realistic placeholder content so the certificate is visible on first load. */
 export async function sampleConfig(templateId = 'reference'): Promise<CertificateConfig> {
   const base = blankConfig(templateId)
+  // The loading screen waits only for the signature font, so fetch it first on
+  // its own; then start the certificate's (much larger) fonts in the background
+  // so they download while the sample assets are drawn and the UI mounts.
+  await loadFont(SIGNATURE_FONT)
+  void loadFonts(requiredFonts(base)).catch(() => {}) // failures surface (and retry) in the preview
   const [logo, ...signatures] = await Promise.all([
     sampleLogo(),
     ...SAMPLE_SIGNATORIES.map((s, i) => sampleSignature(s.sign, i)),

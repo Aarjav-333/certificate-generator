@@ -14,11 +14,9 @@ import { useCertificate } from './hooks/useCertificate'
 import { useCertificateLayout } from './hooks/useCertificateLayout'
 import { applyTemplate, blankConfig } from './lib/config'
 import { downloadImage, downloadPdf } from './lib/exporter'
-import { loadFonts } from './lib/fonts/loader'
 import { clearAllSaved, clearDraft, loadDraft } from './lib/storage'
 import { exportErrors, liveErrors } from './lib/validation'
 import { getTemplate } from './templates'
-import { requiredFonts } from './templates/engine'
 import type { CertificateConfig } from './types/certificate'
 
 type SectionId = 'template' | 'institution' | 'participant' | 'event' | 'wording' | 'graphics' | 'signatories' | 'design'
@@ -49,9 +47,6 @@ export default function App() {
     let alive = true
     ;(async () => {
       const draft = await loadDraft().catch(() => null)
-      // Start downloading the certificate's fonts now, in parallel with building
-      // the sample assets, instead of waiting for the first preview render.
-      void loadFonts(requiredFonts(draft ?? blankConfig('reference'))).catch(() => {})
       const cfg = draft ?? (await sampleConfig('reference'))
       if (alive) setInitial(cfg)
     })()
