@@ -1,5 +1,6 @@
 import type { ImageAsset } from '../types/certificate.js'
-import { newId } from '../utils/dataUrl.js'
+import { dataUrlToBytes, newId } from '../utils/dataUrl.js'
+import { isWellFormedJpeg, parsePngStructure } from './imageFormat.js'
 import { blobToDataUrl, loadImage } from '../utils/image.js'
 
 export type ImageKind = 'logo' | 'graphic' | 'signature' | 'background'
@@ -72,10 +73,12 @@ export async function processImageFile(file: File, kind: ImageKind, opts: Proces
   // Photos stay JPEG (smaller); everything else becomes PNG to keep transparency.
   const keepJpeg = type === 'image/jpeg' && !opts.removeWhite
   // Use the original bytes untouched when no processing is needed.
-  if (keepJpeg && scale === 1 && file.size < 3 * 1024 * 1024) {
+  // (pdf-lib hangs on truncated PNGs and embeds truncated JPEGs as broken images,
+  // so files that browsers merely tolerate are re-encoded below instead.)
+  if (keepJpeg && scale === 1 && file.size < 3 * 1024 * 1024 && isWellFormedJpeg(dataUrlToBytes(src))) {
     return { id: newId(), dataUrl: src, mime: 'image/jpeg', width: w, height: h, name: file.name, alt: '' }
   }
-  if (type === 'image/png' && scale === 1 && !opts.removeWhite && !opts.trim) {
+  if (type === 'image/png' && scale === 1 && !opts.removeWhite && !opts.trim && parsePngStructure(dataUrlToBytes(src))) {
     return { id: newId(), dataUrl: src, mime: 'image/png', width: w, height: h, name: file.name, alt: '' }
   }
 
