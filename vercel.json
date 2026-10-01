@@ -1,0 +1,8 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "functions": {
+    "api/certificates/index.ts": { "includeFiles": "public/fonts/*.ttf", "maxDuration": 30 },
+    "api/certificates/png.ts": { "includeFiles": "public/fonts/*.ttf", "maxDuration": 60 },
+    "api/certificates/batch.ts": { "includeFiles": "public/fonts/*.ttf", "maxDuration": 300 }
+  }
+}
