@@ -225,6 +225,20 @@ describe('POST /api/certificates — validation', () => {
     await expectError({ ...valid(), event: { ...valid().event, startDate: '2026-10-12', endDate: '2026-10-10' } }, 400, /event\.endDate: End date is before the start date/)
   })
 
+  it('reports every problem in one response', async () => {
+    const json = await expectError(
+      { template: 'fancy', institution: { name: 'CET' }, participant: { designation: 42 }, event: { name: 'Workshop', startDate: '2026-10-12', endDate: '2026-10-10' } },
+      400,
+      /template must be one of/,
+    )
+    expect(json.details?.map((d) => d.field)).toEqual(['template', 'participant.designation', 'participant.name', 'event.endDate'])
+  })
+
+  it('does not repeat a field that already has a structural error', async () => {
+    const json = await expectError({ ...valid(), participant: { name: 42 } }, 400, /participant\.name must be a string/)
+    expect(json.details?.filter((d) => d.field === 'participant.name')).toHaveLength(1)
+  })
+
   it('rejects an unknown template', async () => {
     await expectError({ ...valid(), template: 'fancy' }, 400, /template must be one of: reference, classic, modern/)
   })

@@ -234,14 +234,15 @@ export async function parseCertificateRequest(raw: unknown, decodeImage: ImageDe
   ])
 
   if (c.tooLarge) throw new ApiError(413, 'PayloadTooLarge', c.tooLarge, c.issues)
-  if (c.issues.length) throw validationError(c.issues)
 
   // Hand the cleaned-up request to the app's own normaliser so defaults and
-  // template design are applied exactly as in the web application.
+  // template design are applied exactly as in the web application. This also
+  // runs when structural problems were found (invalid parts fall back to safe
+  // defaults), so the business rules below can be reported in the same response.
   signatories = signatories.map((s, i) => ({ ...s, signature: signatures[i] }))
   const cfg = normalizeConfig({
     ...r,
-    templateId: typeof templateId === 'string' ? templateId : 'reference',
+    templateId: typeof templateId === 'string' && templateIds.includes(templateId) ? templateId : 'reference',
     body: body ?? undefined,
     institution: { ...objs.institution, logo },
     participant: objs.participant ?? {},
@@ -251,12 +252,17 @@ export async function parseCertificateRequest(raw: unknown, decodeImage: ImageDe
     signatories,
   })
 
-  // Business rules shared with the web form (required fields, date range, wording syntax…).
-  const issues = exportErrors(cfg).map((e) => {
-    const field = p(apiPath(e.field, cfg))
-    const message = /is required\.$/.test(e.message) || /needs a name/.test(e.message) ? `${field} is required` : `${field}: ${e.message.replace(/\.$/, '')}`
-    return { field, message }
-  })
+  // Business rules shared with the web form (required fields, date range, wording syntax…),
+  // skipping fields that already have a structural error.
+  const flagged = new Set(c.issues.map((i) => i.field))
+  const rules = exportErrors(cfg)
+    .map((e) => {
+      const field = p(apiPath(e.field, cfg))
+      const message = /is required\.$/.test(e.message) || /needs a name/.test(e.message) ? `${field} is required` : `${field}: ${e.message.replace(/\.$/, '')}`
+      return { field, message }
+    })
+    .filter((i) => !flagged.has(i.field))
+  const issues = [...c.issues, ...rules]
   if (issues.length) throw validationError(issues)
   return cfg
 }
