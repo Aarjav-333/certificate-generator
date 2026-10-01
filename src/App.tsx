@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { AppHeader } from './components/AppHeader.js'
 import { PreviewPanel, PrintSheet, type ExportKind } from './components/PreviewPanel.js'
+import { BatchSection } from './components/sections/BatchSection.js'
 import { DesignSection } from './components/sections/DesignSection.js'
 import { EventSection, InstitutionSection, ParticipantSection, TemplateSection } from './components/sections/DetailsSections.js'
 import { GraphicsSection } from './components/sections/GraphicsSection.js'
@@ -19,7 +20,7 @@ import { exportErrors, liveErrors } from './lib/validation.js'
 import { getTemplate } from './templates/index.js'
 import type { CertificateConfig } from './types/certificate.js'
 
-type SectionId = 'template' | 'institution' | 'participant' | 'event' | 'wording' | 'graphics' | 'signatories' | 'design'
+type SectionId = 'template' | 'institution' | 'participant' | 'event' | 'wording' | 'graphics' | 'signatories' | 'design' | 'batch'
 
 const SECTIONS: Array<{ id: SectionId; title: string; description: string }> = [
   { id: 'template', title: 'Template', description: 'Choose the certificate design' },
@@ -30,6 +31,7 @@ const SECTIONS: Array<{ id: SectionId; title: string; description: string }> = [
   { id: 'graphics', title: 'Event graphic & background', description: 'Optional emblem and backdrop' },
   { id: 'signatories', title: 'Signatories', description: 'Names, designations and signatures' },
   { id: 'design', title: 'Design', description: 'Fonts, colours, border, layout' },
+  { id: 'batch', title: 'Batch from CSV', description: 'One certificate per row, downloaded as a ZIP' },
 ]
 
 /** Which form section owns a validation field id. */
@@ -167,6 +169,8 @@ function Generator({ initial }: { initial: CertificateConfig }) {
         return <SignatoriesSection {...props} />
       case 'design':
         return <DesignSection config={config} actions={actions} />
+      case 'batch':
+        return <BatchSection config={config} notify={notify} />
     }
   }
 
