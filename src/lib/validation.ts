@@ -1,6 +1,6 @@
-import type { CertificateConfig } from '../types/certificate'
-import { parseIsoDate } from '../utils/date'
-import { checkTemplate } from './text/placeholders'
+import type { CertificateConfig } from '../types/certificate.js'
+import { parseIsoDate } from '../utils/date.js'
+import { checkTemplate } from './text/placeholders.js'
 
 export interface FieldError {
   /** Stable field id — matches the `id` of the form control so we can focus it. */

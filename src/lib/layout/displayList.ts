@@ -1,4 +1,4 @@
-import type { FontKey } from '../fonts/registry'
+import type { FontKey } from '../fonts/registry.js'
 
 /**
  * The display list is the single source of truth for what a certificate looks

@@ -1,8 +1,8 @@
-import { resolveFont } from '../fonts/registry'
-import type { Paragraph, Run } from '../text/richText'
-import type { TextAlign } from '../../types/certificate'
-import type { TextPrim } from './displayList'
-import { measure, shape, type FontSet } from './measure'
+import { resolveFont } from '../fonts/registry.js'
+import type { Paragraph, Run } from '../text/richText.js'
+import type { TextAlign } from '../../types/certificate.js'
+import type { TextPrim } from './displayList.js'
+import { measure, shape, type FontSet } from './measure.js'
 
 export interface TextStyle {
   family: string

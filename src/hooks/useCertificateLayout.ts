@@ -1,9 +1,9 @@
 import { useCallback, useDeferredValue, useEffect, useRef, useState } from 'react'
-import { loadFonts } from '../lib/fonts/loader'
-import type { CertificateLayout } from '../lib/layout/displayList'
-import { getTemplate } from '../templates'
-import { composeCertificate, requiredFonts } from '../templates/engine'
-import type { CertificateConfig } from '../types/certificate'
+import { loadFonts } from '../lib/fonts/loader.js'
+import type { CertificateLayout } from '../lib/layout/displayList.js'
+import { getTemplate } from '../templates/index.js'
+import { composeCertificate, requiredFonts } from '../templates/engine.js'
+import type { CertificateConfig } from '../types/certificate.js'
 
 interface State {
   layout: CertificateLayout | null

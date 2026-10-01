@@ -8,7 +8,7 @@ import {
   type TextareaHTMLAttributes,
 } from 'react'
 
-import { cx } from './cx'
+import { cx } from './cx.js'
 
 type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger'
 

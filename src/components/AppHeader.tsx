@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
-import type { AutosaveStatus } from '../hooks/useAutosave'
-import { ConfigImportError, parseConfigJson, serializeConfig } from '../lib/config'
-import { deleteSaved, listSaved, loadSaved, saveNamed, type SavedEntry } from '../lib/storage'
-import type { CertificateConfig } from '../types/certificate'
-import { downloadBlob, safeFileName } from '../utils/download'
-import { Dialog } from './ui/Dialog'
-import { Button, Field, TextInput, Toggle } from './ui/primitives'
+import type { AutosaveStatus } from '../hooks/useAutosave.js'
+import { ConfigImportError, parseConfigJson, serializeConfig } from '../lib/config.js'
+import { deleteSaved, listSaved, loadSaved, saveNamed, type SavedEntry } from '../lib/storage.js'
+import type { CertificateConfig } from '../types/certificate.js'
+import { downloadBlob, safeFileName } from '../utils/download.js'
+import { Dialog } from './ui/Dialog.js'
+import { Button, Field, TextInput, Toggle } from './ui/primitives.js'
 
 interface Props {
   config: CertificateConfig

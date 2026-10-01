@@ -131,10 +131,6 @@ export function familyOfFont(key: FontKey): FontFamilyDef | undefined {
   return FONT_FAMILIES.find((f) => f.variants.some((v) => v.file === key))
 }
 
-export function fontUrl(key: FontKey): string {
-  return `${import.meta.env.BASE_URL}fonts/${key}`
-}
-
 /** CSS family name under which a given file is registered with the FontFace API. */
 export function cssFamilyFor(key: FontKey): string {
   return `cg_${key.replace(/\.ttf$/, '').replace(/[^a-z0-9]/gi, '_')}`

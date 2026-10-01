@@ -1,5 +1,5 @@
-import type { CertificateConfig } from '../../types/certificate'
-import { formatDate, formatDateRange } from '../../utils/date'
+import type { CertificateConfig } from '../../types/certificate.js'
+import { formatDate, formatDateRange } from '../../utils/date.js'
 
 export interface VariableDef {
   key: string

@@ -1,10 +1,10 @@
-import type { CertificateActions } from '../../hooks/useCertificate'
-import { errorFor, type FieldError } from '../../lib/validation'
-import { TEMPLATES } from '../../templates'
-import type { CertificateConfig } from '../../types/certificate'
-import { ImageUpload } from '../ui/ImageUpload'
-import { cx } from '../ui/cx'
-import { Field, Grid, Range, TextArea, TextInput } from '../ui/primitives'
+import type { CertificateActions } from '../../hooks/useCertificate.js'
+import { errorFor, type FieldError } from '../../lib/validation.js'
+import { TEMPLATES } from '../../templates/index.js'
+import type { CertificateConfig } from '../../types/certificate.js'
+import { ImageUpload } from '../ui/ImageUpload.js'
+import { cx } from '../ui/cx.js'
+import { Field, Grid, Range, TextArea, TextInput } from '../ui/primitives.js'
 
 interface Props {
   config: CertificateConfig

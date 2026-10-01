@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest'
-import { signatureRows } from '../templates/engine'
-import { formatDate, formatDateRange, ordinalSuffix, parseIsoDate } from '../utils/date'
-import { applyTemplate, blankConfig, ConfigImportError, parseConfigJson, serializeConfig } from './config'
-import { getTemplate } from '../templates'
-import { exportErrors, liveErrors } from './validation'
+import { signatureRows } from '../templates/engine.js'
+import { formatDate, formatDateRange, ordinalSuffix, parseIsoDate } from '../utils/date.js'
+import { applyTemplate, blankConfig, ConfigImportError, parseConfigJson, serializeConfig } from './config.js'
+import { getTemplate } from '../templates/index.js'
+import { exportErrors, liveErrors } from './validation.js'
 
 describe('dates', () => {
   it('formats every supported style', () => {

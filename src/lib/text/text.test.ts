@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { checkTemplate, escapeMarkup, renderTemplate } from './placeholders'
-import { parseRichText, plainText } from './richText'
+import { checkTemplate, escapeMarkup, renderTemplate } from './placeholders.js'
+import { parseRichText, plainText } from './richText.js'
 
 const vars = {
   salutation: '',

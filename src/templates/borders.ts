@@ -1,5 +1,5 @@
-import type { PageSize, Prim } from '../lib/layout/displayList'
-import type { BorderStyle } from '../types/certificate'
+import type { PageSize, Prim } from '../lib/layout/displayList.js'
+import type { BorderStyle } from '../types/certificate.js'
 
 export const BORDER_STYLES: Array<{ id: BorderStyle; label: string }> = [
   { id: 'none', label: 'None' },

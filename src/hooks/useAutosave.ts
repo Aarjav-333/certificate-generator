@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { saveDraft } from '../lib/storage'
-import type { CertificateConfig } from '../types/certificate'
+import { saveDraft } from '../lib/storage.js'
+import type { CertificateConfig } from '../types/certificate.js'
 
 export type AutosaveStatus = 'idle' | 'saving' | 'saved' | 'error'
 

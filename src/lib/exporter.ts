@@ -1,9 +1,9 @@
-import { composeCertificate, requiredFonts } from '../templates/engine'
-import { getTemplate } from '../templates'
-import type { CertificateConfig } from '../types/certificate'
-import { downloadBlob, safeFileName } from '../utils/download'
-import { loadFonts } from './fonts/loader'
-import { canvasToBlob, renderCanvas } from './render/canvas'
+import { composeCertificate, requiredFonts } from '../templates/engine.js'
+import { getTemplate } from '../templates/index.js'
+import type { CertificateConfig } from '../types/certificate.js'
+import { downloadBlob, safeFileName } from '../utils/download.js'
+import { loadFonts } from './fonts/loader.js'
+import { canvasToBlob, renderCanvas } from './render/canvas.js'
 
 /** Load fonts and compose — the exact same path the live preview uses. */
 export async function buildLayout(cfg: CertificateConfig) {
@@ -18,7 +18,7 @@ export function certificateFileName(cfg: CertificateConfig): string {
 
 export async function exportPdf(cfg: CertificateConfig): Promise<Blob> {
   // pdf-lib is only needed here, so it is loaded on demand.
-  const [{ fonts, layout }, { renderPdf }] = await Promise.all([buildLayout(cfg), import('./render/pdf')])
+  const [{ fonts, layout }, { renderPdf }] = await Promise.all([buildLayout(cfg), import('./render/pdf.js')])
   const bytes = await renderPdf(layout, fonts, {
     title: [cfg.title, cfg.participant.name].filter(Boolean).join(' — '),
     author: cfg.institution.name,

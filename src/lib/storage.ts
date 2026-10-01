@@ -1,7 +1,7 @@
 import { createStore, del, get, set } from 'idb-keyval'
-import type { CertificateConfig } from '../types/certificate'
-import { newId } from '../utils/dataUrl'
-import { normalizeConfig } from './config'
+import type { CertificateConfig } from '../types/certificate.js'
+import { newId } from '../utils/dataUrl.js'
+import { normalizeConfig } from './config.js'
 
 /**
  * Client-side persistence. IndexedDB is used instead of localStorage because

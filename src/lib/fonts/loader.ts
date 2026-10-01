@@ -1,22 +1,19 @@
-import { fontkit, type FontkitFont } from './fontkit'
-import { cssFamilyFor, fontUrl, type FontKey } from './registry'
+import { parseFont, type LoadedFont } from './core.js'
+import type { FontKey } from './registry.js'
 
-export interface LoadedFont {
-  key: FontKey
-  bytes: ArrayBuffer
-  font: FontkitFont
-  unitsPerEm: number
-  /** Ascender / descender as a fraction of the em. */
-  ascent: number
-  descent: number
-  cssFamily: string
+export type { LoadedFont } from './core.js'
+
+/** Browser-only: URL of a bundled font file (served from /public/fonts). */
+function fontUrl(key: FontKey): string {
+  return `${import.meta.env.BASE_URL}fonts/${key}`
 }
 
 const cache = new Map<FontKey, Promise<LoadedFont>>()
 
 /**
- * Load a font once: fetch the TTF, parse it with fontkit (for measurement and
- * PDF embedding) and register it with the browser (for SVG preview and canvas).
+ * Browser font loading: fetch the TTF, parse it with fontkit (for measurement
+ * and PDF embedding) and register it with the browser (for SVG preview and
+ * canvas). The server equivalent lives in api/_lib/fonts.ts.
  */
 export function loadFont(key: FontKey): Promise<LoadedFont> {
   let p = cache.get(key)
@@ -24,21 +21,11 @@ export function loadFont(key: FontKey): Promise<LoadedFont> {
     p = (async () => {
       const res = await fetch(fontUrl(key))
       if (!res.ok) throw new Error(`Could not load font ${key} (${res.status})`)
-      const bytes = await res.arrayBuffer()
-      const font = fontkit.create(new Uint8Array(bytes))
-      const cssFamily = cssFamilyFor(key)
-      const face = new FontFace(cssFamily, bytes.slice(0))
+      const loaded = parseFont(key, await res.arrayBuffer())
+      const face = new FontFace(loaded.cssFamily, loaded.bytes.slice(0))
       await face.load()
       document.fonts.add(face)
-      return {
-        key,
-        bytes,
-        font,
-        unitsPerEm: font.unitsPerEm,
-        ascent: font.ascent / font.unitsPerEm,
-        descent: Math.abs(font.descent) / font.unitsPerEm,
-        cssFamily,
-      }
+      return loaded
     })()
     p.catch(() => cache.delete(key))
     cache.set(key, p)
@@ -46,9 +33,7 @@ export function loadFont(key: FontKey): Promise<LoadedFont> {
   return p
 }
 
-export async function loadFonts(
-  keys: Iterable<FontKey>,
-): Promise<Map<FontKey, LoadedFont>> {
+export async function loadFonts(keys: Iterable<FontKey>): Promise<Map<FontKey, LoadedFont>> {
   const unique = [...new Set(keys)]
   const loaded = await Promise.all(unique.map(loadFont))
   return new Map(loaded.map((f) => [f.key, f]))

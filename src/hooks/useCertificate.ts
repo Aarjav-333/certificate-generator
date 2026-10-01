@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from 'react'
-import { blankSignatory } from '../lib/config'
-import { MAX_SIGNATORIES, type CertificateConfig, type Signatory } from '../types/certificate'
+import { blankSignatory } from '../lib/config.js'
+import { MAX_SIGNATORIES, type CertificateConfig, type Signatory } from '../types/certificate.js'
 
 type Patch<K extends keyof CertificateConfig> = Partial<CertificateConfig[K]>
 

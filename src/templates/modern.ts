@@ -1,5 +1,5 @@
-import { A4_LANDSCAPE } from '../lib/layout/displayList'
-import type { TemplateDefinition } from './types'
+import { A4_LANDSCAPE } from '../lib/layout/displayList.js'
+import type { TemplateDefinition } from './types.js'
 
 /** Modern minimal: accent bands, tracked sans-serif labels and a large serif title. */
 export const modernTemplate: TemplateDefinition = {

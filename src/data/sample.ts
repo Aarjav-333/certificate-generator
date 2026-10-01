@@ -1,9 +1,9 @@
-import { blankConfig } from '../lib/config'
-import { loadFont, loadFonts } from '../lib/fonts/loader'
-import { requiredFonts } from '../templates/engine'
-import type { CertificateConfig } from '../types/certificate'
-import { newId } from '../utils/dataUrl'
-import { SIGNATURE_FONT, sampleLogo, sampleSignature } from './sampleAssets'
+import { blankConfig } from '../lib/config.js'
+import { loadFont, loadFonts } from '../lib/fonts/loader.js'
+import { requiredFonts } from '../templates/engine.js'
+import type { CertificateConfig } from '../types/certificate.js'
+import { newId } from '../utils/dataUrl.js'
+import { SIGNATURE_FONT, sampleLogo, sampleSignature } from './sampleAssets.js'
 
 const SAMPLE_SIGNATORIES = [
   { name: 'Prof. A. Sample', designation: 'Coordinator', sign: 'A. Sample' },

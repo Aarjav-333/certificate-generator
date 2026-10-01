@@ -1,5 +1,5 @@
-import { A4_LANDSCAPE } from '../lib/layout/displayList'
-import type { TemplateDefinition } from './types'
+import { A4_LANDSCAPE } from '../lib/layout/displayList.js'
+import type { TemplateDefinition } from './types.js'
 
 /** Classic engraved look: ornate gold frame, Cinzel capitals, script name line. */
 export const classicTemplate: TemplateDefinition = {

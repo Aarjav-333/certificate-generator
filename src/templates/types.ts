@@ -1,5 +1,5 @@
-import type { PageSize, Prim } from '../lib/layout/displayList'
-import type { DesignSettings } from '../types/certificate'
+import type { PageSize, Prim } from '../lib/layout/displayList.js'
+import type { DesignSettings } from '../types/certificate.js'
 
 export type ColorRole = 'heading' | 'accent' | 'text'
 export type FontRole = 'primary' | 'secondary' | 'display'

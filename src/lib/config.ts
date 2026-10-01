@@ -1,5 +1,5 @@
-import { getTemplate, type TemplateDefinition } from '../templates'
-import { BORDER_STYLES } from '../templates/borders'
+import { getTemplate, type TemplateDefinition } from '../templates/index.js'
+import { BORDER_STYLES } from '../templates/borders.js'
 import {
   MAX_SIGNATORIES,
   type CertificateConfig,
@@ -7,12 +7,12 @@ import {
   type EventGraphicPlacement,
   type ImageAsset,
   type Signatory,
-} from '../types/certificate'
-import { DATE_FORMATS, parseIsoDate } from '../utils/date'
-import { normalizeHex } from '../utils/color'
-import { newId } from '../utils/dataUrl'
-import { FONT_FAMILIES } from './fonts/registry'
-import { isValidAsset } from './images'
+} from '../types/certificate.js'
+import { DATE_FORMATS, parseIsoDate } from '../utils/date.js'
+import { normalizeHex } from '../utils/color.js'
+import { newId } from '../utils/dataUrl.js'
+import { FONT_FAMILIES } from './fonts/registry.js'
+import { isValidAsset } from './assets.js'
 
 export function blankSignatory(): Signatory {
   return {

@@ -1,8 +1,8 @@
 import { useId, useRef, useState, type DragEvent } from 'react'
-import { ACCEPT_ATTR, ImageUploadError, processImageFile, type ImageKind, type ProcessOptions } from '../../lib/images'
-import type { ImageAsset } from '../../types/certificate'
-import { cx } from './cx'
-import { Button, TextInput } from './primitives'
+import { ACCEPT_ATTR, ImageUploadError, processImageFile, type ImageKind, type ProcessOptions } from '../../lib/images.js'
+import type { ImageAsset } from '../../types/certificate.js'
+import { cx } from './cx.js'
+import { Button, TextInput } from './primitives.js'
 
 interface Props {
   label: string

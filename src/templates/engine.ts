@@ -1,12 +1,12 @@
-import { getFamily } from '../lib/fonts/registry'
-import type { CertificateLayout, ImagePrim, Prim, TextPrim } from '../lib/layout/displayList'
-import { missingGlyphs, type FontSet } from '../lib/layout/measure'
-import { fitParagraphs, plainParagraph, type TextStyle } from '../lib/layout/textLayout'
-import { buildVariables, renderTemplate } from '../lib/text/placeholders'
-import { parseRichText } from '../lib/text/richText'
-import type { CertificateConfig, DesignSettings, ImageAsset, Signatory } from '../types/certificate'
-import { borderPrims } from './borders'
-import type { ColorRole, FontRole, LineSpec, TemplateDefinition, TemplateLayout } from './types'
+import { getFamily } from '../lib/fonts/registry.js'
+import type { CertificateLayout, ImagePrim, Prim, TextPrim } from '../lib/layout/displayList.js'
+import { missingGlyphs, type FontSet } from '../lib/layout/measure.js'
+import { fitParagraphs, plainParagraph, type TextStyle } from '../lib/layout/textLayout.js'
+import { buildVariables, renderTemplate } from '../lib/text/placeholders.js'
+import { parseRichText } from '../lib/text/richText.js'
+import type { CertificateConfig, DesignSettings, ImageAsset, Signatory } from '../types/certificate.js'
+import { borderPrims } from './borders.js'
+import type { ColorRole, FontRole, LineSpec, TemplateDefinition, TemplateLayout } from './types.js'
 
 function colorFor(role: ColorRole, d: DesignSettings): string {
   return role === 'heading' ? d.headingColor : role === 'accent' ? d.accentColor : d.textColor

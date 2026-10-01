@@ -1,4 +1,4 @@
-import type { DateFormatId } from '../types/certificate'
+import type { DateFormatId } from '../types/certificate.js'
 
 const MONTHS = [
   'January', 'February', 'March', 'April', 'May', 'June',

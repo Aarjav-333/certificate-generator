@@ -1,7 +1,7 @@
-import type { CertificateActions } from '../../hooks/useCertificate'
-import type { CertificateConfig, EventGraphicPlacement } from '../../types/certificate'
-import { ImageUpload } from '../ui/ImageUpload'
-import { Field, Grid, Range, Select } from '../ui/primitives'
+import type { CertificateActions } from '../../hooks/useCertificate.js'
+import type { CertificateConfig, EventGraphicPlacement } from '../../types/certificate.js'
+import { ImageUpload } from '../ui/ImageUpload.js'
+import { Field, Grid, Range, Select } from '../ui/primitives.js'
 
 const PLACEMENTS: Array<{ id: EventGraphicPlacement; label: string }> = [
   { id: 'top-right', label: 'Top-right corner' },

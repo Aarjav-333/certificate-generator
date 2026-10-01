@@ -1,10 +1,10 @@
-import type { CertificateActions } from '../../hooks/useCertificate'
-import { processImageFile } from '../../lib/images'
-import { errorFor, type FieldError } from '../../lib/validation'
-import { signatureRows } from '../../templates/engine'
-import { MAX_SIGNATORIES, type CertificateConfig, type Signatory } from '../../types/certificate'
-import { ImageUpload } from '../ui/ImageUpload'
-import { Button, Field, Grid, Range, TextInput, Toggle } from '../ui/primitives'
+import type { CertificateActions } from '../../hooks/useCertificate.js'
+import { processImageFile } from '../../lib/images.js'
+import { errorFor, type FieldError } from '../../lib/validation.js'
+import { signatureRows } from '../../templates/engine.js'
+import { MAX_SIGNATORIES, type CertificateConfig, type Signatory } from '../../types/certificate.js'
+import { ImageUpload } from '../ui/ImageUpload.js'
+import { Button, Field, Grid, Range, TextInput, Toggle } from '../ui/primitives.js'
 
 interface Props {
   config: CertificateConfig

@@ -1,10 +1,10 @@
 import { useMemo, useRef, useState } from 'react'
-import type { CertificateActions } from '../../hooks/useCertificate'
-import { checkTemplate, VARIABLES } from '../../lib/text/placeholders'
-import { errorFor, type FieldError } from '../../lib/validation'
-import { getTemplate } from '../../templates'
-import type { CertificateConfig } from '../../types/certificate'
-import { Button, Field, Grid, TextArea, TextInput } from '../ui/primitives'
+import type { CertificateActions } from '../../hooks/useCertificate.js'
+import { checkTemplate, VARIABLES } from '../../lib/text/placeholders.js'
+import { errorFor, type FieldError } from '../../lib/validation.js'
+import { getTemplate } from '../../templates/index.js'
+import type { CertificateConfig } from '../../types/certificate.js'
+import { Button, Field, Grid, TextArea, TextInput } from '../ui/primitives.js'
 
 interface Props {
   config: CertificateConfig

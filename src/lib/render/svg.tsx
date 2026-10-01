@@ -1,6 +1,6 @@
 import { memo, type CSSProperties } from 'react'
-import { cssFamilyFor } from '../fonts/registry'
-import type { CertificateLayout, Prim } from '../layout/displayList'
+import { cssFamilyFor } from '../fonts/registry.js'
+import type { CertificateLayout, Prim } from '../layout/displayList.js'
 
 /** No browser kerning/ligatures: every character is placed at the engine's x position. */
 const TEXT_STYLE: CSSProperties = {

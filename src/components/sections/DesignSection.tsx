@@ -1,10 +1,10 @@
-import type { CertificateActions } from '../../hooks/useCertificate'
-import { FONT_FAMILIES } from '../../lib/fonts/registry'
-import { BORDER_STYLES } from '../../templates/borders'
-import type { BorderStyle, CertificateConfig, DateFormatId, SignatureLayout, TextAlign } from '../../types/certificate'
-import { contrastRatio } from '../../utils/color'
-import { DATE_FORMATS } from '../../utils/date'
-import { ColorInput, Field, Grid, Range, Select, Toggle } from '../ui/primitives'
+import type { CertificateActions } from '../../hooks/useCertificate.js'
+import { FONT_FAMILIES } from '../../lib/fonts/registry.js'
+import { BORDER_STYLES } from '../../templates/borders.js'
+import type { BorderStyle, CertificateConfig, DateFormatId, SignatureLayout, TextAlign } from '../../types/certificate.js'
+import { contrastRatio } from '../../utils/color.js'
+import { DATE_FORMATS } from '../../utils/date.js'
+import { ColorInput, Field, Grid, Range, Select, Toggle } from '../ui/primitives.js'
 
 function FontSelect({ id, label, value, onChange, hint }: { id: string; label: string; value: string; onChange: (v: string) => void; hint?: string }) {
   return (

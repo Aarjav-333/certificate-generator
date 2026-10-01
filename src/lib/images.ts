@@ -1,6 +1,6 @@
-import type { ImageAsset } from '../types/certificate'
-import { blobToDataUrl, newId } from '../utils/dataUrl'
-import { loadImage } from '../utils/image'
+import type { ImageAsset } from '../types/certificate.js'
+import { newId } from '../utils/dataUrl.js'
+import { blobToDataUrl, loadImage } from '../utils/image.js'
 
 export type ImageKind = 'logo' | 'graphic' | 'signature' | 'background'
 
@@ -157,19 +157,4 @@ export async function svgToAsset(svg: string, name: string, maxSide: number, alt
   canvas.height = Math.round(h * scale)
   canvas.getContext('2d')!.drawImage(img, 0, 0, canvas.width, canvas.height)
   return { id: newId(), dataUrl: canvas.toDataURL('image/png'), mime: 'image/png', width: canvas.width, height: canvas.height, name, alt }
-}
-
-/** Basic structural check for images coming from imported JSON. */
-export function isValidAsset(a: unknown): a is ImageAsset {
-  if (!a || typeof a !== 'object') return false
-  const x = a as Record<string, unknown>
-  return (
-    typeof x.dataUrl === 'string' &&
-    /^data:image\/(png|jpeg);base64,/.test(x.dataUrl) &&
-    (x.mime === 'image/png' || x.mime === 'image/jpeg') &&
-    typeof x.width === 'number' &&
-    typeof x.height === 'number' &&
-    x.width > 0 &&
-    x.height > 0
-  )
 }

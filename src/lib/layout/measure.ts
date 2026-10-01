@@ -1,5 +1,5 @@
-import type { LoadedFont } from '../fonts/loader'
-import type { FontKey } from '../fonts/registry'
+import type { LoadedFont } from '../fonts/core.js'
+import type { FontKey } from '../fonts/registry.js'
 
 export type FontSet = Map<FontKey, LoadedFont>
 

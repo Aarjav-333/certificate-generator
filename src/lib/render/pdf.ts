@@ -1,10 +1,10 @@
-import { fontkit } from '../fonts/fontkit'
-import { familyOfFont } from '../fonts/registry'
+import { fontkit } from '../fonts/fontkit.js'
+import { familyOfFont } from '../fonts/registry.js'
 import { LineCapStyle, PDFDocument, rgb, type PDFFont, type PDFImage } from 'pdf-lib'
-import type { CertificateLayout } from '../layout/displayList'
-import type { FontSet } from '../layout/measure'
-import { dataUrlToBytes } from '../../utils/dataUrl'
-import { hexToRgb01 } from '../../utils/color'
+import type { CertificateLayout } from '../layout/displayList.js'
+import type { FontSet } from '../layout/measure.js'
+import { dataUrlToBytes } from '../../utils/dataUrl.js'
+import { hexToRgb01 } from '../../utils/color.js'
 
 export interface PdfMeta {
   title: string

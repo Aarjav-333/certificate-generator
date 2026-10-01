@@ -1,8 +1,8 @@
-import { loadFont } from '../lib/fonts/loader'
-import { cssFamilyFor } from '../lib/fonts/registry'
-import { svgToAsset } from '../lib/images'
-import type { ImageAsset } from '../types/certificate'
-import { newId } from '../utils/dataUrl'
+import { loadFont } from '../lib/fonts/loader.js'
+import { cssFamilyFor } from '../lib/fonts/registry.js'
+import { svgToAsset } from '../lib/images.js'
+import type { ImageAsset } from '../types/certificate.js'
+import { newId } from '../utils/dataUrl.js'
 
 /** A generic placeholder crest (clearly marked SAMPLE) — replace it with your own logo. */
 const SAMPLE_CREST = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 224">

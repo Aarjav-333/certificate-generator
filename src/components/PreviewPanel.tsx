@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import type { CertificateLayout } from '../lib/layout/displayList'
-import { CertificateSvg } from '../lib/render/svg'
-import type { FieldError } from '../lib/validation'
-import { Button } from './ui/primitives'
+import type { CertificateLayout } from '../lib/layout/displayList.js'
+import { CertificateSvg } from '../lib/render/svg.js'
+import type { FieldError } from '../lib/validation.js'
+import { Button } from './ui/primitives.js'
 
 export type ExportKind = 'pdf' | 'png' | 'jpg' | 'print'
 
